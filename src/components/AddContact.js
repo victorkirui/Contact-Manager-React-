@@ -26,22 +26,21 @@ export class AddContact extends Component {
         e.preventDefault();
         if(this.state.name === '' || this.state.email === ''){
             alert('All fields must be filled!');
+            return;
         } else {
-            console.log(this.state.name);
-            console.log(this.state.email);
+            this.props.addContactHandler(this.state);
         }
         
-        this.setState({name: ''});
-        this.setState({email: ''});
+        this.setState({name: '', email:''})
     }
     
     render() {
         const {name,email} = this.state;
 
         return (
-            <div className="ui main">
-            <h2>Add Contact</h2>
-            <form className="ui form">
+            <div className="ui main" style={{margin:"60px 0px"}}>
+            <h3>Add Contact</h3>
+            <form className="ui form" onSubmit={this.addContact}>
                 <div className="ui field">
                     <label>Name</label>
                     <input type="text" value={name} name="name" placeholder="Add your name" onChange={this.nameHandler} />
@@ -50,7 +49,7 @@ export class AddContact extends Component {
                     <label>Email</label>
                     <input type="email" value={email} name="email" placeholder="Add your email" onChange={this.emailHandler} />
                 </div>
-                <button className="ui button blue" onClick={this.addContact}>Add</button>
+                <button className="ui button blue" >Add</button>
             </form>
         </div>
         )

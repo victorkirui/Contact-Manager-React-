@@ -1,12 +1,8 @@
 import React from 'react';
 
-
-
-function ContactCard({contacts}) {
+function ContactCard(props) {
     return (
         <div>
-            {
-                contacts.map(contact => (
                     <div className="item"
                         style={{display: "flex",
                                 justifyContent: "space-between",
@@ -19,15 +15,15 @@ function ContactCard({contacts}) {
                             <i className="user outline icon" style={{fontSize:"22px"}} />
                             <div>
                                 <div className="ui header">
-                                {contact.name}
+                                {props.contact.name}
                                 </div>
-                                <div>Email: {contact.email}</div>
+                                <div>Email: {props.contact.email}</div>
                             </div>
                         </div>
-                        <i className="trash alternate outline icon" style={{color:"red",fontSize:"22px"}}> </i>
+                        <i className="trash alternate outline icon" 
+                            style={{color:"red",fontSize:"22px",cursor:"pointer"}}
+                            onClick = {() => props.clickHandler(props.contact.id)}> </i>
                     </div>
-                ))
-            }
         </div>
     )
 }
